@@ -84,7 +84,7 @@ def change_score():
             mid_or_final = input('Mid/Final? ')
             if mid_or_final == "mid":  # 중간고사일 때,
                 new_score = int(input("Input new score: "))
-                if new_score <= 100:
+                if 0 <= new_score and new_score <= 100:
                     # 바뀌기 이전 score 출력
                     print_table_row()
                     print(student[0] + "\t" + student[1] + "\t" + str(student[2]) + "\t" +
@@ -108,7 +108,7 @@ def change_score():
 
             elif mid_or_final == "final":  # 기말고사일 때,
                 new_score = input("Input new score: ")
-                if new_score <= 100:
+                if 0 <= new_score and new_score <= 100:
                     student[3] = new_score  # 기말고사 점수 수정
                     student[4] = get_average(
                         student[2], student[3])  # 평균점수 다시 계산
@@ -182,8 +182,50 @@ def search_grade():
         return
     return
 
+###################### remove 함수 ######################
 
+
+def remove():
+    # 목록에 아무도 없을 경우, return 한다.
+    if len(stu_list) == 0:
+        print("List is empty.")
+        return
+
+    # 학번 리스트를 만든다.
+    existing_id_list = []
+    for student in stu_list:
+        existing_id_list.append(student[0])
+
+    # 학번을 입력받는다.
+    input_id = input("Student ID: ")
+    if input_id not in existing_id_list:
+        print("NO SUCH PERSON.")
+        return
+    else:
+        for student in stu_list:
+            if student[0] == input_id:
+                stu_list.remove(student)
+                break
+        print("Student removed.")
+        return
+
+
+###################### quit 함수 ######################
+
+
+def quit():
+    save_data_yes_or_no = input("Save data?[yes/no] ")
+    if save_data_yes_or_no == "yes":
+        file_name_to_write = input("File name: ")
+        fw = open(f"./{file_name_to_write}", "w")
+        for student in stu_list:
+            data = student[0] + "\t" + student[1] + "\t" + str(student[2]) + "\t" + str(
+                student[3]) + "\t" + str(student[4]) + "\t" + student[5] + "\n"
+            fw.write(data)
+        fw.close()
+    return
 ###################### 실행되는 부분(메인함수) ######################
+
 
 while(True):
     # 파일 읽어오기 및 데이터 저장하기
@@ -243,8 +285,9 @@ while(True):
     elif upper_input_command == "SEARCHGRADE":
         search_grade()
     elif upper_input_command == "REMOVE":
-        print("remove")
+        remove()
     elif upper_input_command == "QUIT":
+        quit()
         break
     else:
         continue
