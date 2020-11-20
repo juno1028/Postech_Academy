@@ -1,0 +1,24 @@
+digraph Tree {
+node [shape=box, style="filled", color="black"] ;
+0 [label="worst concave points <= 0.147\ngini = 0.466\nsamples = 227\nvalue = [143, 84]\nclass = Malignant", fillcolor="#f4cbad"] ;
+1 [label="worst area <= 1028.35\ngini = 0.134\nsamples = 152\nvalue = [141, 11]\nclass = Malignant", fillcolor="#e78b48"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="worst texture <= 33.105\ngini = 0.054\nsamples = 145\nvalue = [141, 4]\nclass = Malignant", fillcolor="#e6853f"] ;
+1 -> 2 ;
+3 [label="texture error <= 2.197\ngini = 0.015\nsamples = 133\nvalue = [132, 1]\nclass = Malignant", fillcolor="#e5823b"] ;
+2 -> 3 ;
+4 [label="gini = 0.0\nsamples = 127\nvalue = [127, 0]\nclass = Malignant", fillcolor="#e58139"] ;
+3 -> 4 ;
+5 [label="gini = 0.278\nsamples = 6\nvalue = [5, 1]\nclass = Malignant", fillcolor="#ea9a61"] ;
+3 -> 5 ;
+6 [label="gini = 0.375\nsamples = 12\nvalue = [9, 3]\nclass = Malignant", fillcolor="#eeab7b"] ;
+2 -> 6 ;
+7 [label="gini = 0.0\nsamples = 7\nvalue = [0, 7]\nclass = Benign", fillcolor="#399de5"] ;
+1 -> 7 ;
+8 [label="worst radius <= 14.97\ngini = 0.052\nsamples = 75\nvalue = [2, 73]\nclass = Benign", fillcolor="#3ea0e6"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+9 [label="gini = 0.5\nsamples = 4\nvalue = [2, 2]\nclass = Malignant", fillcolor="#ffffff"] ;
+8 -> 9 ;
+10 [label="gini = 0.0\nsamples = 71\nvalue = [0, 71]\nclass = Benign", fillcolor="#399de5"] ;
+8 -> 10 ;
+}
